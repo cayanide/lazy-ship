@@ -1,29 +1,35 @@
-// App.js
-import "react-native-gesture-handler";
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "./screens/HomeScreen";
-import OrderScreen from "./screens/OrderScreen";
-
-const Stack = createStackNavigator();
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "./components/Common/Header";
+import OrderForm from "./components/Customer/OrderForm";
+import Payment from "./components/Customer/Payment";
+import Dashboard from "./components/Captain/Dashboard";
+import OrdersList from "./components/Captain/OrdersList";
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: "Swiggy Genie" }}
-        />
-        <Stack.Screen
-          name="Order"
-          component={OrderScreen}
-          options={{ title: "Place Order" }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Router>
+      <div>
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            {/* Home or Landing Page */}
+          </Route>
+          <Route path="/customer/order">
+            <OrderForm />
+          </Route>
+          <Route path="/customer/payment">
+            <Payment amount={150} />
+          </Route>
+          <Route path="/captain/dashboard">
+            <Dashboard />
+          </Route>
+          <Route path="/captain/orders">
+            <OrdersList />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
