@@ -1,32 +1,19 @@
+// src/App.js
+
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Header from "./components/Common/Header";
-import OrderForm from "./components/Customer/OrderForm";
-import Payment from "./components/Customer/Payment";
-import Dashboard from "./components/Captain/Dashboard";
-import OrdersList from "./components/Captain/OrdersList";
+import RoleSelection from "./components/RoleSelection";
+import CustomerLogin from "./components/Customer/CustomerLogin";
+import CaptainLogin from "./components/Captain/CaptainLogin";
 
 const App = () => {
   return (
     <Router>
       <div>
-        <Header />
         <Switch>
-          <Route exact path="/">
-            {/* Home or Landing Page */}
-          </Route>
-          <Route path="/customer/order">
-            <OrderForm />
-          </Route>
-          <Route path="/customer/payment">
-            <Payment amount={150} />
-          </Route>
-          <Route path="/captain/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/captain/orders">
-            <OrdersList />
-          </Route>
+          <Route exact path="/" component={RoleSelection} />
+          <Route path="/customer-login" component={CustomerLogin} />
+          <Route path="/captain-login" component={CaptainLogin} />
         </Switch>
       </div>
     </Router>
